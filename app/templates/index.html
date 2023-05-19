@@ -1,0 +1,51 @@
+<!-- index.html -->
+<!-- index.html -->
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron bg-white">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <div class="d-flex flex-column justify-content-center align-items-start" style="height: 100%;">
+                    <h1 class="display-4">BenchBabble</h1>
+                    <p class="lead">See how many times the <a href="https://www.scc-csc.ca/home-accueil/index-eng.aspx">Supreme Court of Canada</a> used a given word (1877-2023).</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="static/library.jpg" alt="Image Description" class="img-fluid">
+            </div>
+        </div>
+        <hr class="my-4">
+        <div class="row justify-content-center">
+            <div class="col-md-12"> <!-- Adjusted the column class to control the width -->
+                <form method="get" action="{{ url_for('word') }}" class="d-flex justify-content-center">
+                    <div class="form-group mb-0">
+                        <input type="text" class="form-control" placeholder="Enter a word" name="word" required>
+                    </div>
+                    <div class="form-group mb-0">
+                        <button class="btn btn-outline-secondary" type="submit">Submit</button>
+                    </div>
+                
+                    <!-- display error message if it exists -->
+                    {% if error_message %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error_message }}
+                        </div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-block">Enter a word to discover how many times it was used (and its decade by decade relative importance) by the Supreme Court of Canada. This project is built using Professor Sean Rehaag's "<a href="https://refugeelab.ca/bulk-data/scc/">Supreme Court of Canada Bulk Decisions Dataset</a>" (2023). French language decisions to be integrated soon.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+

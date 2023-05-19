@@ -1,0 +1,36 @@
+<!-- graph.html -->
+{% extends 'base.html' %}
+
+{% block title %}Graph{% endblock %}
+
+{% block content %}
+<div class="container">
+    <center><p>Try a new word:</p></center>
+        <form method="get" action="{{ url_for('word') }}" class="d-flex justify-content-center">
+            <div class="form-group mb-0">
+                <input type="text" class="form-control" placeholder="Enter a word" name="word" required>
+            </div>
+            <div class="form-group mb-0">
+                <button class="btn btn-outline-secondary" type="submit">Submit</button>
+            </div>
+        </form>
+    <hr class="my-2">
+</div>
+
+<div class="container">    
+    <center>
+        <h4>Number of times the word "{{ word }}" used by the SCC, 5 year rolling average</h4>
+    </center>
+    {{ rolling_graph|safe }}
+    <hr class="my-2">
+</div>
+
+<div class="container">
+    <center>
+        <h4>Relative importance of the term "{{ word }}," by decade</h4>
+        <p>Learn more about the TF-IDF algorithm <a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfTransformer.html#sklearn.feature_extraction.text.TfidfTransformer">here</a>.</p>
+    </center>
+    {{ tf_idf_graph|safe }}   
+</div>
+
+{% endblock %}
